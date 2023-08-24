@@ -1,9 +1,19 @@
 package agh.ics.oop;
 
 
+import java.util.List;
+
+import static agh.ics.oop.OptionsParser.parse;
+
 public class World {
     public static void main(String[] args) {
         System.out.println("System wystartowal");
+        Animal animal = new Animal();
+        List <MoveDirection> directions = parse(args);
+        for (MoveDirection direction: directions){
+            animal.move(direction);
+        }
+        System.out.println(animal);
         int licznik = 0;
         for (String arguments : args) {
             if (arguments.equals("f")) {
@@ -22,7 +32,7 @@ public class World {
             }
 
         }
-        Direction[] arguments = new Direction[licznik];
+        MoveDirection[] arguments = new MoveDirection[licznik];
 
         int i = 0;
         for (String arg : args) {
@@ -32,15 +42,15 @@ public class World {
             }
         }
 
-        run2(arguments);
+        run(arguments);
         System.out.println("System zakonczyl dzialanie");
     }
 
-    public static void run2(Direction[] args) {
+    public static void run(MoveDirection[] args) {
         if (args.length != 0) {
             System.out.println("START");
         }
-        for (Direction argument : args) {
+        for (MoveDirection argument : args) {
             switch (argument) {
                 case FORWARD -> System.out.println("Zwierzak idzie do przodu");
                 case BACKWARD -> System.out.println("Zwierzak idzie do tylu");
@@ -53,12 +63,12 @@ public class World {
         }
     }
 
-    public static Direction changing(String argument) {
+    public static MoveDirection changing(String argument) {
         return switch (argument) {
-            case "f" -> Direction.FORWARD;
-            case "b" -> Direction.BACKWARD;
-            case "l" -> Direction.LEFT;
-            case "r" -> Direction.RIGHT;
+            case "f" -> MoveDirection.FORWARD;
+            case "b" -> MoveDirection.BACKWARD;
+            case "l" -> MoveDirection.LEFT;
+            case "r" -> MoveDirection.RIGHT;
             default -> null;
         };
     }

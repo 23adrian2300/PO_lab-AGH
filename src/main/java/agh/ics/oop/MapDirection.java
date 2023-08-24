@@ -13,7 +13,7 @@ enum MapDirection {
             case SOUTH -> "Południe";
             case WEST -> "Zachód";
             case EAST -> "Wschód";
-            default -> "Brak kierunku";
+            default -> null;
         };
     }
     public MapDirection next(){
@@ -40,7 +40,7 @@ enum MapDirection {
             case EAST -> new Vector2d(1,0);
             case SOUTH -> new Vector2d(0,-1);
             case WEST -> new Vector2d(-1,0);
-            default -> new Vector2d(0,0);
+            default -> null;
         };
     }
 }
