@@ -4,17 +4,39 @@ package agh.ics.oop;
 public class World {
     public static void main(String[] args) {
         System.out.println("System wystartowal");
-        int len = args.length;
-        Direction[] arguments = new Direction[len];
-        int i;
-        for (i = 0; i < args.length; ++i) {
-            arguments[i] = changing(args[i]);
+        int licznik = 0;
+        for (String arguments : args) {
+            if (arguments.equals("f")) {
+                licznik++;
+            }
+            if (arguments.equals("b")) {
+                licznik++;
+            }
+
+            if (arguments.equals("l")) {
+                licznik++;
+            }
+
+            if (arguments.equals("r")) {
+                licznik++;
+            }
+
         }
-        run(arguments);
+        Direction[] arguments = new Direction[licznik];
+
+        int i = 0;
+        for (String arg : args) {
+            if (arg.equals("f") || arg.equals("l") || arg.equals("r") || arg.equals("b")) {
+                arguments[i] = changing(arg);
+                i++;
+            }
+        }
+
+        run2(arguments);
         System.out.println("System zakonczyl dzialanie");
     }
 
-    public static void run(Direction[] args) {
+    public static void run2(Direction[] args) {
         if (args.length != 0) {
             System.out.println("START");
         }
@@ -37,7 +59,8 @@ public class World {
             case "b" -> Direction.BACKWARD;
             case "l" -> Direction.LEFT;
             case "r" -> Direction.RIGHT;
-            default -> Direction.NONE;
+            default -> null;
         };
     }
+
 }
